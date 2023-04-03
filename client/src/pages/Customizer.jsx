@@ -46,10 +46,18 @@ const Customizer = () => {
     }
   }
 
-  const handleSubmit = (type) => {
+  const handleSubmit = async(type) => {
     if (!prompt) return alert('Please enter a prompt');
     
     try {
+      setGeneratingImg(true)
+      const response = await fetch('http://localhost:3000/api/v1/dalle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt})
+      })
+      const data = await response.json();
+      handleDecals(type, `data:image/png;base64,${data.photo}`)
       
       
     } catch (error) {
