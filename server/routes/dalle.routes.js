@@ -15,7 +15,7 @@ const openai = new OpenAIApi(config)
 
 
 
-router.get('/', (req, res) => {
+router.route('/').get((req, res) => {
   res.status(200).json({message:'Hello from DALL .E'})  
 })
 
